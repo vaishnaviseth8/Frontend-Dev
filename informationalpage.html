@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Paris</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #1a1a2e;
+      color: #f0f0f0;
+      padding: 1.5rem 2%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: #f0f0f0;
+      text-decoration: none;
+      margin-right: 2em;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main section {
+      padding: 5vh 2%;
+      min-height: 80vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-bottom: 5px solid #f0f0f0;
+    }
+
+    #intro {
+      background: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      background-attachment: fixed;
+    }
+
+    #history {
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    }
+
+    #culture {
+      background: url('https://images.unsplash.com/photo-1526481280696-3f1a13f97aa9?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      background-attachment: fixed;
+    }
+
+    #food {
+      background: radial-gradient(circle, #ffefba, #ffffff);
+      color: #333;
+    }
+
+    main section h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    main section p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    footer {
+      background-color: #1a1a2e;
+      color: #f0f0f0;
+      padding: 2rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Discover Paris</h1>
+    <nav>
+      <a href="#intro">Home</a>
+      <a href="#history">History</a>
+      <a href="#culture">Culture</a>
+      <a href="#food">Food</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h2>Welcome to Paris</h2>
+      <p>Experience the city of lights, love, and iconic landmarks. Paris is a city of art, culture, and history.</p>
+    </section>
+
+    <section id="history">
+      <h2>Historical Highlights</h2>
+      <p>Paris has a rich history spanning centuries, from the medieval streets to the grand boulevards and museums.</p>
+    </section>
+
+    <section id="culture">
+      <h2>Cultural Attractions</h2>
+      <p>From the Louvre to the Eiffel Tower, immerse yourself in Parisian art, music, and festivals all year round.</p>
+    </section>
+
+    <section id="food">
+      <h2>Gastronomy</h2>
+      <p>Enjoy world-renowned cuisine, from fine dining to charming cafes. Paris offers a culinary journey unlike any other.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Discover Paris. All rights reserved.
+  </footer>
+
+</body>
+</html>

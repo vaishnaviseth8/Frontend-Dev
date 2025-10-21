@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magazine Layout</title>
+  <style>
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background-color: #f4f4f0;
+      margin: 0;
+      padding: 2em;
+    }
+
+    .content {
+      background-color: #fff;
+      padding: 2em;
+      column-count: 3;
+      column-gap: 2em;
+      column-rule: 1px solid #ccc;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1 {
+      column-span: all;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1em;
+      color: #1a1a2e;
+    }
+
+    p {
+      text-align: justify;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1em;
+    }
+
+    img {
+      float: left;
+      margin: 0 1em 1em 0;
+      width: 200px;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 900px) {
+      .content {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        column-count: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <h1>Exploring the Wonders of Nature</h1>
+
+    <p><img src="https://via.placeholder.com/200x150" alt="Nature Image">Nature has always inspired humans with its beauty and diversity. From majestic mountains to vast oceans, the natural world is filled with wonders that evoke awe and curiosity.</p>
+
+    <p>Forests provide essential habitats for countless species and play a crucial role in maintaining ecological balance. They absorb carbon dioxide, produce oxygen, and help regulate the climate, making them indispensable for life on Earth.</p>
+
+    <p>Rivers and lakes are not only sources of fresh water but also sustain diverse ecosystems. They nurture wildlife, support agriculture, and offer recreational opportunities for humans to connect with nature.</p>
+
+    <p>Deserts, though seemingly barren, host unique plants and animals adapted to survive extreme conditions. The stark landscapes teach resilience and the power of adaptation in harsh environments.</p>
+
+    <p>Mountains challenge explorers and adventurers, offering breathtaking views and opportunities for hiking, climbing, and meditation. They also influence weather patterns and water distribution across regions.</p>
+
+    <p>Protecting our planet’s natural treasures is a responsibility shared by all. Through conservation, sustainable practices, and environmental awareness, we can ensure that future generations continue to experience the wonders of nature.</p>
+  </div>
+
+</body>
+</html>

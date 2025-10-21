@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastery CSS Layout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      background-color: #f4f4f4;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(26,26,46,0.95);
+      color: #fff;
+      padding: 1em 2%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 2px solid #ff7e5f;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1.5em;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff7e5f;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 70vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      padding: 0.5em 1em;
+      border: 3px solid rgba(255,126,95,0.7);
+      border-radius: 10px;
+      background-color: rgba(0,0,0,0.3);
+    }
+
+    /* About Section */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 4em 2%;
+      background-color: #fff;
+      gap: 2em;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 1 1 50%;
+      padding: 1em;
+    }
+
+    .about-text h3 {
+      font-size: 2rem;
+      margin-bottom: 1em;
+      color: #1a1a2e;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      margin-bottom: 1em;
+    }
+
+    .about img {
+      flex: 1 1 45%;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Services Section */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 4em 2%;
+      background-color: #e0e0ff;
+      gap: 2em;
+    }
+
+    .service-box {
+      flex: 1 1 30%;
+      background: linear-gradient(to bottom right, #fffbec, #ffe066);
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+    }
+
+    .service-box h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1em;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 4em 2%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+    }
+
+    .contact form {
+      width: 100%;
+      max-width: 500px;
+      background-color: rgba(26,26,46,0.05);
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .contact form label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+
+    .contact form input,
+    .contact form textarea {
+      width: 100%;
+      padding: 0.8em;
+      margin-bottom: 1.2em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: 2px solid transparent;
+      transition: border-color 0.3s, outline-color 0.3s;
+    }
+
+    .contact form input:focus,
+    .contact form textarea:focus {
+      border-color: #ff7e5f;
+      outline-color: rgba(255,126,95,0.5);
+    }
+
+    .contact form button {
+      width: 100%;
+      padding: 1em;
+      background-color: #ff7e5f;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact form button:hover {
+      background-color: #e06b50;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1a1a2e;
+      color: #fff;
+      text-align: center;
+      padding: 2em;
+      border-top: 3px solid #ff7e5f;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about img, .about-text {
+        flex: 1 1 100%;
+      }
+
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .service-box {
+        flex: 1 1 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MyWebsite</h1>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <h2>Welcome to My Website</h2>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-text">
+      <h3>About Us</h3>
+      <p>We specialize in creating responsive, modern, and user-friendly web designs. Our team ensures high-quality solutions using the latest web technologies.</p>
+      <p>Our mission is to provide seamless digital experiences, blending creativity with functionality to achieve client goals.</p>
+    </div>
+    <img src="https://via.placeholder.com/500x300" alt="About Image">
+  </section>
+
+  <section class="services" id="services">
+    <div class="service-box">
+      <h4>Web Design</h4>
+      <p>Crafting visually appealing and responsive website designs tailored to your brand.</p>
+    </div>
+    <div class="service-box">
+      <h4>Development</h4>
+      <p>Building fast, secure, and scalable web applications using modern technologies.</p>
+    </div>
+    <div class="service-box">
+      <h4>SEO Optimization</h4>
+      <p>Improving website visibility and search ranking to reach more potential customers.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <form>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required placeholder="Your Name">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="Your Email">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required placeholder="Write your message..."></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 MyWebsite. All rights reserved.
+  </footer>
+
+</body>
+</html>

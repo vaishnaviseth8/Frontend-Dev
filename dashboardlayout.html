@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Layout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: #1a1a2e;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 2%;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    .dashboard {
+      display: flex;
+      margin-top: 60px;
+      flex: 1;
+      min-height: calc(100vh - 60px);
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #2e2e48;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 2em 1em;
+      height: calc(100vh - 60px);
+      position: fixed;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 1.2em;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #ff7e5f;
+    }
+
+    .main {
+      margin-left: 220px;
+      padding: 2em;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      background-color: #f4f4f4;
+      min-height: calc(100vh - 60px);
+    }
+
+    .content-box {
+      background-color: #fff;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      flex: 1;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1em 0;
+      }
+      .main {
+        margin-left: 0;
+      }
+      .content-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Dashboard</h1>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <a href="#">Home</a>
+      <a href="#">Analytics</a>
+      <a href="#">Reports</a>
+      <a href="#">Settings</a>
+    </aside>
+
+    <main class="main">
+      <div class="content-box">
+        <h2>Content Box 1</h2>
+        <p>This is the first content section of the dashboard.</p>
+      </div>
+
+      <div class="content-box">
+        <h2>Content Box 2</h2>
+        <p>This is the second content section of the dashboard.</p>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
