@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Blog Layout</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+    gap: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+  }
+
+  header {
+    grid-area: header;
+    background: #333;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    margin: 0;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+  }
+
+  aside {
+    grid-area: sidebar;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  article {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  article h2 {
+    margin-top: 0;
+  }
+
+  footer {
+    grid-area: footer;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+  }
+
+  @media (max-width: 800px) {
+    body {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "main"
+        "sidebar"
+        "footer";
+    }
+
+    main {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>My Blog</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <aside>
+    <h3>Categories</h3>
+    <ul>
+      <li><a href="#">Technology</a></li>
+      <li><a href="#">Design</a></li>
+      <li><a href="#">Travel</a></li>
+      <li><a href="#">Lifestyle</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <article>
+      <h2>Post Title 1</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet justo ut ipsum dapibus pretium.</p>
+    </article>
+    <article>
+      <h2>Post Title 2</h2>
+      <p>Praesent convallis, ligula id luctus pretium, eros odio facilisis erat, sed vulputate nulla lorem ac arcu.</p>
+    </article>
+  </main>
+
+  <footer>
+    &copy; 2025 My Blog | Contact: info@myblog.com
+  </footer>
+</body>
+</html>

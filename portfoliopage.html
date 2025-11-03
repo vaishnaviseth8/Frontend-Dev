@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Portfolio</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+  .about, .image {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+  }
+  .image img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  footer {
+    text-align: center;
+    padding: 15px;
+    background: #333;
+    color: white;
+  }
+  @media (max-width: 700px) {
+    main {
+      flex-direction: column;
+    }
+    header {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Your Name</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="about">
+      <h2>About Me</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel justo nec elit bibendum tincidunt.</p>
+    </section>
+    <section class="image">
+      <img src="https://via.placeholder.com/400" alt="Profile Image">
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Your Name
+  </footer>
+</body>
+</html>

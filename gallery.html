@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Photo Gallery</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+
+  figure:hover img {
+    transform: scale(1.1);
+  }
+
+  figcaption {
+    text-align: center;
+    padding: 10px;
+    background: white;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+  <h1 style="text-align:center;">Photo Gallery</h1>
+  <div class="gallery">
+    <figure>
+      <img src="https://via.placeholder.com/400x300" alt="Photo 1">
+      <figcaption>Mountain View</figcaption>
+    </figure>
+    <figure>
+      <img src="https://via.placeholder.com/400x300" alt="Photo 2">
+      <figcaption>City Skyline</figcaption>
+    </figure>
+    <figure>
+      <img src="https://via.placeholder.com/400x300" alt="Photo 3">
+      <figcaption>Beach Sunset</figcaption>
+    </figure>
+    <figure>
+      <img src="https://via.placeholder.com/400x300" alt="Photo 4">
+      <figcaption>Forest Trail</figcaption>
+    </figure>
+    <figure>
+      <img src="https://via.placeholder.com/400x300" alt="Photo 5">
+      <figcaption>Desert Dunes</figcaption>
+    </figure>
+    <figure>
+      <img src="https://via.placeholder.com/400x300" alt="Photo 6">
+      <figcaption>Snowy Peaks</figcaption>
+    </figure>
+  </div>
+</body>
+</html>

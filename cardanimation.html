@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card Flip Animation</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f4;
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+  }
+
+  .card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .card-front {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-front img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+  }
+
+  .card-front h2 {
+    margin: 10px 0;
+  }
+
+  .card-back {
+    background: #007bff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transform: rotateY(180deg);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">
+        <img src="https://via.placeholder.com/300x280" alt="Card Image">
+        <h2>Card Title</h2>
+      </div>
+      <div class="card-back">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel mi sit amet libero dapibus posuere.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
