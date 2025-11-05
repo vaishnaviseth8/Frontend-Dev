@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Height and Width Practice</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f2f2f2;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  overflow: auto;
+}
+.box1 {
+  width: 200px;
+  height: 150px;
+  background: #ff5733;
+}
+.box2 {
+  width: 40%;
+  min-height: 20vh;
+  background: #33c1ff;
+}
+.box3 {
+  width: 15em;
+  max-width: 250px;
+  height: 300px;
+  background: #28a745;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="box box1">Box 1<br>200px × 150px</div>
+  <div class="box box2">Box 2<br>40% width, 20vh height</div>
+  <div class="box box3">Box 3<br>15em width, 300px height</div>
+</div>
+</body>
+</html>

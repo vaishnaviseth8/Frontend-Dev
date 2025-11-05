@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typography and Text Styling</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fafafa;
+  color: #333;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  padding: 60px;
+  text-align: justify;
+}
+h1, h2 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+article {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+article::first-letter {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #007bff;
+}
+article::first-line {
+  font-weight: bold;
+  color: #555;
+}
+p {
+  margin-bottom: 20px;
+}
+mark {
+  background-color: #ffe066;
+  color: #000;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+strong {
+  color: #d6336c;
+}
+em {
+  color: #007bff;
+  font-style: italic;
+}
+.highlight {
+  font-family: 'Georgia', serif;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.small-text {
+  font-size: 0.9em;
+  color: #555;
+}
+.large-text {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<h1>Typography and Text Styling Demo</h1>
+<article>
+  <p class="large-text">Typography plays a crucial role in <strong>web design</strong>, influencing how users read and perceive content. Proper use of <em>fonts</em>, sizes, and spacing enhances readability and visual appeal.</p>
+
+  <p class="highlight">Different <mark>font families</mark> and weights can be combined to create contrast and hierarchy. Designers often mix sans-serif for headings with serif fonts for body text to balance modern and classic aesthetics.</p>
+
+  <p class="small-text">Adjusting <em>line-height</em> and <strong>letter-spacing</strong> improves legibility, especially on screens. Aligning text properly and highlighting key points using <mark>mark</mark>, <strong>strong</strong>, and <em>em</em> tags ensures clarity and focus.</p>
+</article>
+<h2>End of Typography Showcase</h2>
+</body>
+</html>

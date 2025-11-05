@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gradient Background Webpage</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+}
+header, footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: #111;
+  padding: 15px;
+  z-index: 10;
+}
+header {
+  top: 0;
+}
+footer {
+  bottom: 0;
+}
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2em;
+}
+.linear {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  background-attachment: fixed;
+}
+.radial {
+  background: radial-gradient(circle, #6a11cb, #2575fc);
+}
+</style>
+</head>
+<body>
+<header>Gradient Background Demo</header>
+<section class="linear">Linear Gradient Background (Fixed)</section>
+<section class="radial">Radial Gradient Background</section>
+<footer>© 2025 Gradient Demo</footer>
+</body>
+</html>

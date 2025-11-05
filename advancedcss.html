@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced CSS Selectors Demo</title>
+<style>
+/* Attribute Selector: Targets input elements with type="text" */
+input[type="text"] {
+  border: 2px solid #007bff;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+/* Attribute Selector: Targets links that start with "https" */
+a[href^="https"] {
+  color: #28a745;
+  text-decoration: none;
+}
+
+/* Pseudo-class: Hover effect on links */
+a:hover {
+  text-decoration: underline;
+  color: #ff5733;
+}
+
+/* Pseudo-class: Focus state for input */
+input:focus {
+  outline: none;
+  border-color: #ff5733;
+}
+
+/* Pseudo-class: Style every odd list item */
+li:nth-child(odd) {
+  background: #f2f2f2;
+}
+
+/* Pseudo-elements: Add decorative content before and after list items */
+li::before {
+  content: "→ ";
+  color: #007bff;
+}
+li::after {
+  content: " ✓";
+  color: #28a745;
+}
+
+/* Combinator: Direct child selector */
+.container > h2 {
+  color: #333;
+  border-bottom: 2px solid #007bff;
+}
+
+/* Combinator: Adjacent sibling selector (+) */
+h2 + p {
+  color: #555;
+  font-style: italic;
+}
+
+/* Combinator: General sibling selector (~) */
+h2 ~ ul {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Descendant selector: Targets all links inside list items */
+ul li a {
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Advanced CSS Selectors</h2>
+  <p>This paragraph uses an adjacent sibling selector.</p>
+
+  <ul>
+    <li><a href="https://example.com">Secure Link</a></li>
+    <li><a href="http://example.org">Non-Secure Link</a></li>
+    <li><a href="https://openai.com">OpenAI</a></li>
+    <li><a href="http://mysite.com">My Site</a></li>
+  </ul>
+
+  <form>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" placeholder="Enter your name">
+  </form>
+</div>
+</body>
+</html>

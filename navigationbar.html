@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation Bar with Hover Effects</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header {
+  background: #007bff;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 25px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+nav a:hover {
+  background: #0056b3;
+  border-color: #fff;
+}
+nav a.active {
+  background: #ff6b6b;
+}
+main {
+  flex: 1;
+  padding: 50px;
+  text-align: center;
+}
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+}
+@media (max-width: 700px) {
+  nav {
+    flex-direction: column;
+  }
+  nav a {
+    width: 80%;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="#" class="active">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Portfolio</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Welcome to Our Website</h1>
+  <p>This is a demo of a navigation bar with smooth transitions and hover effects. Resize the window to see the responsive layout.</p>
+</main>
+
+<footer>
+  © 2025 Navigation Bar Demo
+</footer>
+</body>
+</html>
