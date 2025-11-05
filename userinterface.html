@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Components Page</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #f0f4ff, #d9e7ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Card container */
+.ui-card {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+}
+
+/* Search bar */
+input[type="text"] {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0,123,255,0.4);
+}
+
+/* Buttons */
+button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+button:active {
+  transform: translateY(1px);
+}
+button:focus {
+  outline: 3px solid #80bdff;
+  outline-offset: 2px;
+}
+
+/* Dropdown menu */
+select {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0,123,255,0.4);
+}
+</style>
+</head>
+<body>
+<div class="ui-card">
+  <input type="text" placeholder="Search...">
+  <button>Submit</button>
+  <button>Cancel</button>
+  <select>
+    <option value="">Select Option</option>
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+  </select>
+</div>
+</body>
+</html>

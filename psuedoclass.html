@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pseudo-Classes Demo</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px;
+}
+.container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.example {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h3 {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+a {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  background: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+a:hover {
+  background: #0056b3;
+}
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background: #28a745;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:focus {
+  outline: 3px solid #ff6b6b;
+}
+button:active {
+  transform: scale(0.95);
+  background: #1e7e34;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding: 8px;
+  margin: 5px 0;
+  background: #ffc107;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+li:nth-child(odd) {
+  background: #fd7e14;
+  color: #fff;
+}
+li:nth-child(even) {
+  background: #ffc107;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="example">
+    <h3>:hover</h3>
+    <a href="#">Hover Me</a>
+    <p>Changes color when you hover over the link.</p>
+  </div>
+
+  <div class="example">
+    <h3>:focus</h3>
+    <button>Focus Me</button>
+    <p>Outline appears when button is focused (click or tab).</p>
+  </div>
+
+  <div class="example">
+    <h3>:active</h3>
+    <button>Click Me</button>
+    <p>Button shrinks and darkens while active (pressed).</p>
+  </div>
+
+  <div class="example">
+    <h3>:nth-child()</h3>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+    </ul>
+    <p>Odd and even list items have different backgrounds.</p>
+  </div>
+</div>
+</body>
+</html>

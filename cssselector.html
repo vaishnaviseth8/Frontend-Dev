@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Selectors Practice</title>
+<style>
+/* Element selector: style all paragraphs */
+p {
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Class selector: style elements with .highlight class */
+.highlight {
+  background-color: #ffeb3b;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+/* ID selector: style element with specific ID */
+#unique {
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* Attribute selector: style links that start with https */
+a[href^="https"] {
+  color: #28a745;
+  text-decoration: none;
+}
+
+/* Descendant selector: style li inside ul inside .list-container */
+.list-container ul li {
+  margin: 5px 0;
+  padding: 5px;
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+
+/* Child selector: style direct li children of ul */
+ul > li {
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+}
+
+/* Adjacent sibling selector: style p immediately after h2 */
+h2 + p {
+  font-style: italic;
+}
+
+/* General sibling selector: style all p siblings after h2 */
+h2 ~ p {
+  font-size: 0.95em;
+  color: #555;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #111;
+  color: #fff;
+  margin-top: 40px;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>CSS Selectors Practice</h1>
+</header>
+
+<main style="padding: 20px; max-width: 800px; margin: auto;">
+  <h2>Element Selector Example</h2>
+  <p>This paragraph is styled using the element selector.</p>
+
+  <h2>Class Selector Example</h2>
+  <p class="highlight">This paragraph has a highlight class applied.</p>
+
+  <h2>ID Selector Example</h2>
+  <p id="unique">This paragraph uses an ID selector.</p>
+
+  <h2>Attribute Selector Example</h2>
+  <p>Visit our <a href="https://example.com">secure site</a> using https.</p>
+
+  <h2>Combinator Selectors Example</h2>
+  <div class="list-container">
+    <ul>
+      <li>First item</li>
+      <li>Second item</li>
+      <li>Third item</li>
+    </ul>
+  </div>
+
+  <p>Paragraph immediately after a heading (h2 + p).</p>
+  <p>Another paragraph styled using general sibling selector (h2 ~ p).</p>
+</main>
+
+<footer>
+  © 2025 CSS Selectors Practice Page
+</footer>
+</body>
+</html>
