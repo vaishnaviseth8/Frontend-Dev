@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filter Comparison Layout</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;padding:40px;text-align:center}
+h1{margin-bottom:20px}
+.comparison{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap}
+.image-box{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.1);transition:.3s;background:#fff}
+.image-box img{width:300px;height:200px;object-fit:cover;display:block;transition:filter .5s ease}
+.after img{filter:brightness(60%)}
+.after img:hover{filter:none}
+.caption{padding:10px;font-weight:bold}
+@media(max-width:700px){
+.comparison{flex-direction:column}
+.image-box img{width:100%;max-width:400px}
+}
+</style>
+</head>
+<body>
+<h1>Filter Comparison Layout</h1>
+<div class="comparison">
+<div class="image-box before">
+<img src="https://picsum.photos/id/1015/400/300" alt="Original">
+<div class="caption">Before</div>
+</div>
+<div class="image-box after">
+<img src="https://picsum.photos/id/1015/400/300" alt="After with Filter">
+<div class="caption">After (Brightness Filter)</div>
+</div>
+</div>
+</body>
+</html>

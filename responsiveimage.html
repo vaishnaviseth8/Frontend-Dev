@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Image Filter Gallery</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;padding:20px;background:#f4f4f4;text-align:center}
+h1{margin-bottom:20px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.image-item{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.image-item img{width:100%;transition:filter .5s ease}
+.blur img{filter:blur(3px)}
+.grayscale img{filter:grayscale(100%)}
+.sepia img{filter:sepia(100%)}
+.brightness img{filter:brightness(.6)}
+.contrast img{filter:contrast(200%)}
+.hue-rotate img{filter:hue-rotate(90deg)}
+.image-item img:hover{filter:none}
+figcaption{padding:10px;font-weight:bold;background:#fff}
+@media(max-width:600px){.gallery{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h1>Responsive Image Filter Gallery</h1>
+<div class="gallery">
+<figure class="image-item blur"><img src="https://picsum.photos/id/1011/400/300"><figcaption>Blur</figcaption></figure>
+<figure class="image-item grayscale"><img src="https://picsum.photos/id/1015/400/300"><figcaption>Grayscale</figcaption></figure>
+<figure class="image-item sepia"><img src="https://picsum.photos/id/1020/400/300"><figcaption>Sepia</figcaption></figure>
+<figure class="image-item brightness"><img src="https://picsum.photos/id/1035/400/300"><figcaption>Brightness</figcaption></figure>
+<figure class="image-item contrast"><img src="https://picsum.photos/id/1041/400/300"><figcaption>Contrast</figcaption></figure>
+<figure class="image-item hue-rotate"><img src="https://picsum.photos/id/1052/400/300"><figcaption>Hue-Rotate</figcaption></figure>
+</div>
+</body>
+</html>
