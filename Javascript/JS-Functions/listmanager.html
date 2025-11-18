@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Product List Manager</title>
+<style>
+  body { font-family: Arial; }
+  input, button { padding: 8px; margin: 5px 0; border-radius: 5px; border: 1px solid #888; }
+  ul { list-style-type: none; padding: 0; }
+  li { margin-bottom: 10px; padding: 5px; background: #f0f0f0; border-radius: 5px; display: flex; align-items: center; gap: 10px; }
+  li input { flex: 1; }
+  .action-btn { cursor: pointer; padding: 5px 10px; border: none; border-radius: 3px; }
+  .edit-btn { background: #ffc107; }
+  .delete-btn { background: #dc3545; color: white; }
+</style>
+</head>
+<body>
+
+<h2>Product List Manager</h2>
+
+<input type="text" id="productInput" placeholder="Enter product name">
+<button id="addBtn">Add Product</button>
+
+<ul id="productList"></ul>
+
+<script>
+const productInput = document.getElementById("productInput");
+const addBtn = document.getElementById("addBtn");
+const productList = document.getElementById("productList");
+
+let editMode = null;
+
+function createProductItem(name) {
+  const li = document.createElement("li");
+  li.innerHTML = `
+    <span class="product-name">${name}</span>
+    <button class="action-btn edit-btn">Edit</button>
+    <button class="action-btn delete-btn">Delete</button>
+  `;
+  return li;
+}
+
+addBtn.addEventListener("click", () => {
+  const name = productInput.value.trim();
+  if(name){
+    productList.appendChild(createProductItem(name));
+    productInput.value = "";
+  }
+});
+
+productList.addEventListener("click", (e) => {
+  const li = e.target.closest("li");
+  if(!li) return;
+
+  if(e.target.classList.contains("delete-btn")){
+    li.remove();
+    if(editMode === li) editMode = null;
+  }
+
+  if(e.target.classList.contains("edit-btn")){
+    if(editMode && editMode !== li) saveEdit(editMode);
+    startEdit(li);
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if(editMode && !editMode.contains(e.target) && e.target !== addBtn){
+    saveEdit(editMode);
+  }
+});
+
+function startEdit(li){
+  const span = li.querySelector(".product-name");
+  const name = span.textContent;
+  span.innerHTML = `<input type="text" value="${name}">`;
+  const input = span.querySelector("input");
+  input.focus();
+  editMode = li;
+}
+
+function saveEdit(li){
+  const span = li.querySelector(".product-name");
+  const input = span.querySelector("input");
+  if(input){
+    span.textContent = input.value.trim() || "Unnamed Product";
+  }
+  editMode = null;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Multi-Step Form</title>
+<style>
+  body { font-family: Arial; }
+  .step { display: none; flex-direction: column; margin-bottom: 15px; }
+  .step.active { display: flex; }
+  input { padding: 8px; border-radius: 5px; border: 1px solid #888; margin-bottom: 10px; }
+  button { padding: 8px 15px; border-radius: 5px; margin: 5px 0; cursor: pointer; }
+  .error { color: red; font-size: 12px; margin-bottom: 10px; }
+  #summary { margin-top: 20px; background: #f0f0f0; padding: 15px; border-radius: 5px; }
+</style>
+</head>
+<body>
+
+<h2>Multi-Step Form</h2>
+
+<div id="formContainer">
+  <div class="step active" data-step="1">
+    <label>Name:</label>
+    <input type="text" id="name">
+    <div class="error" id="nameError"></div>
+    <button id="next1">Next</button>
+  </div>
+
+  <div class="step" data-step="2">
+    <label>Email:</label>
+    <input type="email" id="email">
+    <div class="error" id="emailError"></div>
+    <button id="back2">Back</button>
+    <button id="next2">Next</button>
+  </div>
+
+  <div class="step" data-step="3">
+    <label>Password:</label>
+    <input type="password" id="password">
+    <div class="error" id="passwordError"></div>
+    <button id="back3">Back</button>
+    <button id="submitBtn">Submit</button>
+  </div>
+</div>
+
+<div id="summary"></div>
+
+<script>
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const passwordError = document.getElementById("passwordError");
+
+const steps = document.querySelectorAll(".step");
+
+function showStep(stepNum){
+  steps.forEach(s => s.classList.remove("active"));
+  document.querySelector(`.step[data-step="${stepNum}"]`).classList.add("active");
+}
+
+function validateName(){
+  if(/^[A-Za-z ]+$/.test(nameInput.value.trim())){
+    nameError.textContent = "";
+    return true;
+  } else {
+    nameError.textContent = "Name must contain only letters";
+    return false;
+  }
+}
+
+function validateEmail(){
+  if(/^\S+@\S+\.\S+$/.test(emailInput.value.trim())){
+    emailError.textContent = "";
+    return true;
+  } else {
+    emailError.textContent = "Invalid email format";
+    return false;
+  }
+}
+
+function validatePassword(){
+  if(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#]).{8,}$/.test(passwordInput.value)){
+    passwordError.textContent = "";
+    return true;
+  } else {
+    passwordError.textContent = "Password must be 8+ chars with uppercase, number & special char";
+    return false;
+  }
+}
+
+document.getElementById("next1").addEventListener("click", () => {
+  if(validateName()) showStep(2);
+});
+
+document.getElementById("back2").addEventListener("click", () => showStep(1));
+document.getElementById("next2").addEventListener("click", () => {
+  if(validateEmail()) showStep(3);
+});
+
+document.getElementById("back3").addEventListener("click", () => showStep(2));
+document.getElementById("submitBtn").addEventListener("click", () => {
+  if(validatePassword()){
+    document.getElementById("formContainer").style.display = "none";
+    document.getElementById("summary").innerHTML = `
+      <h3>Form Summary</h3>
+      <p><strong>Name:</strong> ${nameInput.value}</p>
+      <p><strong>Email:</strong> ${emailInput.value}</p>
+      <p><strong>Password:</strong> ${"*".repeat(passwordInput.value.length)}</p>
+    `;
+  }
+});
+</script>
+
+</body>
+</html>
