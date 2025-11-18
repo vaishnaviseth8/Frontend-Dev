@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Object Updater</title>
+
+<style>
+  body { font-family: Arial; }
+  .field { margin-bottom: 15px; display: flex; flex-direction: column; }
+  input { padding: 8px; border: 1px solid #888; border-radius: 5px; }
+  button { padding: 10px 20px; cursor: pointer; margin-top: 10px; }
+  #output { 
+    margin-top: 20px; 
+    background: #f0f0f0; 
+    padding: 15px; 
+    border-radius: 5px; 
+  }
+</style>
+
+</head>
+<body>
+
+<h2>Dynamic Object Updater</h2>
+
+<div id="formContainer">
+  <div class="field">
+    <label>Name:</label>
+    <input type="text" id="name">
+  </div>
+
+  <div class="field">
+    <label>Email:</label>
+    <input type="text" id="email">
+  </div>
+
+  <div class="field">
+    <label>Age:</label>
+    <input type="number" id="age">
+  </div>
+
+  <button id="updateBtn">Update User</button>
+</div>
+
+<div id="output"></div>
+
+<script>
+  const user = { name: "John", email: "john@mail.com", age: 21 };
+
+  function loadFormValues() {
+    document.getElementById("name").value = user.name;
+    document.getElementById("email").value = user.email;
+    document.getElementById("age").value = user.age;
+  }
+
+  function showUser() {
+    document.getElementById("output").innerHTML = `
+      <h3>Updated User Object</h3>
+      <p><strong>Name:</strong> ${user.name}</p>
+      <p><strong>Email:</strong> ${user.email}</p>
+      <p><strong>Age:</strong> ${user.age}</p>
+    `;
+  }
+
+  document.getElementById("updateBtn").addEventListener("click", () => {
+    user.name = document.getElementById("name").value;
+    user.email = document.getElementById("email").value;
+    user.age = document.getElementById("age").value;
+
+    showUser();
+  });
+
+  loadFormValues();
+  showUser();
+</script>
+
+</body>
+</html>

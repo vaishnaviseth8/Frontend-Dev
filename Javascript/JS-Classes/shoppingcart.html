@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shopping Cart</title>
+
+<style>
+  body { font-family: Arial; }
+  input, button { padding: 8px; margin: 5px 0; border-radius: 5px; border: 1px solid #888; }
+  #cartOutput { margin-top: 20px; background: #f0f0f0; padding: 15px; border-radius: 5px; }
+  .field { display: flex; flex-direction: column; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<h2>Shopping Cart</h2>
+
+<div id="cartForm">
+  <div class="field">
+    <label>Item Name:</label>
+    <input type="text" id="itemName">
+  </div>
+  <div class="field">
+    <label>Price:</label>
+    <input type="number" id="itemPrice">
+  </div>
+  <div class="field">
+    <label>Quantity:</label>
+    <input type="number" id="itemQty">
+  </div>
+  <button id="addItemBtn">Add Item</button>
+</div>
+
+<div class="field">
+  <label>Coupon Code (SAVE20 or DISC10):</label>
+  <input type="text" id="coupon">
+  <button id="applyCouponBtn">Apply Coupon</button>
+</div>
+
+<div id="cartOutput"></div>
+
+<script>
+  class Cart {
+    constructor() {
+      this.items = [];
+      this.discount = 0;
+    }
+
+    addItem(name, price, qty) {
+      this.items.push({ name, price: Number(price), qty: Number(qty) });
+      this.showCart();
+    }
+
+    getTotal() {
+      return this.items.reduce((total, item) => total + item.price * item.qty, 0);
+    }
+
+    applyCoupon(code) {
+      const couponRegex = /^(SAVE20|DISC10)$/;
+      if (couponRegex.test(code)) {
+        this.discount = code === "SAVE20" ? 20 : 10;
+        this.showCart();
+      } else {
+        alert("Invalid coupon code");
+      }
+    }
+
+    showCart() {
+      const total = this.getTotal();
+      const discounted = total - (total * this.discount / 100);
+      let html = `<h3>Cart Items</h3>`;
+      this.items.forEach(i => {
+        html += `<p>${i.name} - $${i.price} x ${i.qty} = $${i.price * i.qty}</p>`;
+      });
+      html += `<p><strong>Total:</strong> $${total}</p>`;
+      if(this.discount > 0){
+        html += `<p><strong>Discount:</strong> ${this.discount}%</p>`;
+        html += `<p><strong>Final Total:</strong> $${discounted}</p>`;
+      }
+      document.getElementById("cartOutput").innerHTML = html;
+    }
+  }
+
+  const cart = new Cart();
+
+  document.getElementById("addItemBtn").addEventListener("click", () => {
+    const name = document.getElementById("itemName").value;
+    const price = document.getElementById("itemPrice").value;
+    const qty = document.getElementById("itemQty").value;
+    if(name && price && qty) cart.addItem(name, price, qty);
+  });
+
+  document.getElementById("applyCouponBtn").addEventListener("click", () => {
+    const code = document.getElementById("coupon").value.toUpperCase();
+    cart.applyCoupon(code);
+  });
+</script>
+
+</body>
+</html>

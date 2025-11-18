@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Form Validator</title>
+
+<style>
+  .field {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  input.valid {
+    border-color: green;
+  }
+
+  input.invalid {
+    border-color: red;
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+
+<form id="studentForm">
+  <div class="field">
+    <label>Name:</label>
+    <input type="text" id="name">
+    <span class="error"></span>
+  </div>
+
+  <div class="field">
+    <label>Email:</label>
+    <input type="text" id="email">
+    <span class="error"></span>
+  </div>
+
+  <div class="field">
+    <label>Phone:</label>
+    <input type="text" id="phone">
+    <span class="error"></span>
+  </div>
+
+  <div class="field">
+    <label>Password:</label>
+    <input type="password" id="password">
+    <span class="error"></span>
+  </div>
+
+  <button type="submit">Register</button>
+</form>
+
+<script>
+  const form = document.getElementById("studentForm");
+
+  const validators = {
+    name: /^[A-Za-z ]+$/,
+    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    phone: /^\d{10}$/,
+    password: /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]+$/
+  };
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    validateField("name", validators.name, "Name must contain only alphabets");
+    validateField("email", validators.email, "Invalid email format");
+    validateField("phone", validators.phone, "Phone must be 10 digits");
+    validateField("password", validators.password, "Password must contain 1 uppercase, 1 number, 1 special character");
+  });
+
+  function validateField(id, regex, msg) {
+    const input = document.getElementById(id);
+    const error = input.nextElementSibling;
+
+    if (regex.test(input.value)) {
+      input.classList.add("valid");
+      input.classList.remove("invalid");
+      error.textContent = "";
+    } else {
+      input.classList.add("invalid");
+      input.classList.remove("valid");
+      error.textContent = msg;
+    }
+  }
+</script>
+
+</body>
+</html>

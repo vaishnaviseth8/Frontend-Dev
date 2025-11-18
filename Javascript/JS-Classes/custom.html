@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Custom Form Builder</title>
+
+<style>
+  body {
+    font-family: Arial;
+  }
+  .field {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  input {
+    padding: 8px;
+    border: 1px solid #777;
+    border-radius: 5px;
+  }
+  button {
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+</style>
+
+</head>
+<body>
+
+<h2>Dynamic Form Builder</h2>
+
+<div id="formContainer"></div>
+<div id="output"></div>
+
+<script>
+  class FormBuilder {
+    constructor(fields, containerId) {
+      this.fields = fields;
+      this.container = document.getElementById(containerId);
+    }
+
+    renderForm() {
+      let html = '<form id="dynamicForm">';
+
+      this.fields.forEach(f => {
+        html += `
+          <div class="field">
+            <label>${f.label}</label>
+            <input type="${f.type}" id="${f.name}" />
+          </div>
+        `;
+      });
+
+      html += `<button type="button" id="submitBtn">Submit</button>`;
+      html += "</form>";
+
+      this.container.innerHTML = html;
+
+      document.getElementById("submitBtn").addEventListener("click", () => {
+        const data = this.getFormData();
+        document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+      });
+    }
+
+    getFormData() {
+      const result = {};
+      this.fields.forEach(f => {
+        result[f.name] = document.getElementById(f.name).value;
+      });
+      return result;
+    }
+  }
+
+  const formFields = [
+    { type: "text", label: "Username", name: "username" },
+    { type: "email", label: "Email", name: "email" },
+    { type: "password", label: "Password", name: "password" }
+  ];
+
+  const form = new FormBuilder(formFields, "formContainer");
+  form.renderForm();
+</script>
+
+</body>
+</html>

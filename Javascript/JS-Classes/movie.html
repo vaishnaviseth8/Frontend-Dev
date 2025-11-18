@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Movie Ticket Booking</title>
+
+<style>
+  body {
+    font-family: Arial;
+  }
+  .field {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  input {
+    padding: 8px;
+    border: 2px solid #bbb;
+    border-radius: 5px;
+  }
+  input.valid {
+    border-color: green;
+  }
+  input.invalid {
+    border-color: red;
+  }
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  #ticket {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0f0f0;
+    border-radius: 5px;
+  }
+</style>
+
+</head>
+<body>
+
+<h2>Movie Ticket Booking</h2>
+
+<div id="bookingForm">
+  <div class="field">
+    <label>Name:</label>
+    <input type="text" id="name">
+    <span class="error"></span>
+  </div>
+
+  <div class="field">
+    <label>Email:</label>
+    <input type="text" id="email">
+    <span class="error"></span>
+  </div>
+
+  <div class="field">
+    <label>Number of Seats (1-10):</label>
+    <input type="text" id="seats">
+    <span class="error"></span>
+  </div>
+
+  <button id="bookBtn">Book Ticket</button>
+</div>
+
+<div id="ticket"></div>
+
+<script>
+  const nameRegex = /^[A-Za-z ]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const seatsRegex = /^(?:[1-9]|10)$/;
+
+  function validate(id, regex, message) {
+    const input = document.getElementById(id);
+    const error = input.nextElementSibling;
+
+    if (regex.test(input.value)) {
+      input.classList.add("valid");
+      input.classList.remove("invalid");
+      error.textContent = "";
+      return true;
+    } else {
+      input.classList.add("invalid");
+      input.classList.remove("valid");
+      error.textContent = message;
+      return false;
+    }
+  }
+
+  document.getElementById("bookBtn").addEventListener("click", () => {
+    const validName = validate("name", nameRegex, "Name must contain only alphabets");
+    const validEmail = validate("email", emailRegex, "Invalid email format");
+    const validSeats = validate("seats", seatsRegex, "Seats must be between 1 and 10");
+
+    if (validName && validEmail && validSeats) {
+      const booking = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        seats: document.getElementById("seats").value
+      };
+
+      document.getElementById("ticket").innerHTML = `
+        <h3>🎟 Ticket Confirmed</h3>
+        <p><strong>Name:</strong> ${booking.name}</p>
+        <p><strong>Email:</strong> ${booking.email}</p>
+        <p><strong>Seats:</strong> ${booking.seats}</p>
+      `;
+    }
+  });
+</script>
+
+</body>
+</html>

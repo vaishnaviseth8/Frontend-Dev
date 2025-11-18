@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Form Validation</title>
+
+<style>
+  body { font-family: Arial; }
+  .field { margin-bottom: 15px; display: flex; flex-direction: column; }
+  input { padding: 8px; border: 2px solid #ccc; border-radius: 5px; }
+  input.valid { border-color: green; }
+  input.invalid { border-color: red; }
+  .error { color: red; font-size: 12px; }
+  #success { margin-top: 20px; color: green; font-weight: bold; }
+  button { padding: 10px 20px; cursor: pointer; margin-top: 10px; }
+</style>
+
+</head>
+<body>
+
+<h2>Login Form</h2>
+
+<div id="form">
+  <div class="field">
+    <label>Username:</label>
+    <input type="text" id="username">
+    <span class="error"></span>
+  </div>
+
+  <div class="field">
+    <label>Password:</label>
+    <input type="password" id="password">
+    <span class="error"></span>
+  </div>
+
+  <button id="loginBtn">Login</button>
+</div>
+
+<div id="success"></div>
+
+<script>
+  const usernameRegex = /^.{5,}$/;
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#]).{8,}$/;
+
+  function validate(id, regex, message) {
+    const input = document.getElementById(id);
+    const error = input.nextElementSibling;
+
+    if (regex.test(input.value)) {
+      input.classList.add("valid");
+      input.classList.remove("invalid");
+      error.textContent = "";
+      return true;
+    } else {
+      input.classList.add("invalid");
+      input.classList.remove("valid");
+      error.textContent = message;
+      return false;
+    }
+  }
+
+  document.getElementById("loginBtn").addEventListener("click", () => {
+    document.getElementById("success").textContent = "";
+
+    const validUser = validate("username", usernameRegex, "Username must be at least 5 characters");
+    const validPass = validate("password", passwordRegex, "Password must be 8+ chars and include uppercase, lowercase, number & special character");
+
+    if (validUser && validPass) {
+      document.getElementById("success").textContent = "Login Successful!";
+    }
+  });
+</script>
+
+</body>
+</html>
