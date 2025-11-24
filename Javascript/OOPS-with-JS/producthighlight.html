@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Highlight</title>
+  <style>
+    .product {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      display: inline-block;
+      width: 150px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .product.highlight {
+      background-color: #ffffcc;
+    }
+
+    .product .details {
+      display: none;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .product:hover .details {
+      display: block;
+    }
+
+    .favorite {
+      font-size: 16px;
+      cursor: pointer;
+      color: gray;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    .favorite.selected {
+      color: red;
+    }
+
+    .product[discount="true"] {
+      border-color: green;
+      background-color: #e0ffe0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="product" data-stock="true" discount="true">
+  <div class="name">Product A</div>
+  <div class="details">Extra info: 10% off!</div>
+  <div class="favorite">&#9733;</div>
+</div>
+
+<div class="product" data-stock="false" discount="false">
+  <div class="name">Product B</div>
+  <div class="details">Extra info: Limited edition</div>
+  <div class="favorite">&#9733;</div>
+</div>
+
+<div class="product" data-stock="true" discount="true">
+  <div class="name">Product C</div>
+  <div class="details">Extra info: 20% off!</div>
+  <div class="favorite">&#9733;</div>
+</div>
+
+<script>
+  const products = document.querySelectorAll('.product');
+
+  products.forEach(p => {
+    p.addEventListener('click', (e) => {
+      if (e.target.classList.contains('favorite')) return;
+
+      products.forEach(prod => prod.classList.remove('highlight'));
+      p.classList.add('highlight');
+
+      if (p.dataset.stock === "false") {
+        alert(`${p.querySelector('.name').textContent} is out of stock!`);
+      }
+    });
+
+    const fav = p.querySelector('.favorite');
+    fav.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fav.classList.toggle('selected');
+    });
+  });
+</script>
+
+</body>
+</html>

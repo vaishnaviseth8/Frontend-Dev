@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive FAQ</title>
+  <style>
+    .faq-item {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .question {
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.2s, background-color 0.2s;
+    }
+
+    .question:hover {
+      color: #007BFF;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 5px;
+    }
+
+    .highlight {
+      background-color: #ffffcc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="faq-item">
+  <div class="question">What is your return policy?</div>
+  <div class="answer">You can return items within 30 days of purchase.</div>
+</div>
+
+<div class="faq-item">
+  <div class="question">How long does shipping take?</div>
+  <div class="answer">
+    Shipping usually takes 3-5 business days.
+    <br>
+    <input type="text" placeholder="Ask a follow-up">
+  </div>
+</div>
+
+<div class="faq-item">
+  <div class="question">Do you offer international shipping?</div>
+  <div class="answer">Yes, we ship worldwide. Fees may vary.</div>
+</div>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.question');
+    const answer = item.querySelector('.answer');
+    const input = item.querySelector('input');
+
+    question.addEventListener('click', () => {
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    });
+
+    question.addEventListener('dblclick', () => {
+      document.querySelectorAll('.answer').forEach(a => a.style.display = 'none');
+    });
+
+    if (input) {
+      input.addEventListener('focus', () => {
+        question.classList.add('highlight');
+      });
+
+      input.addEventListener('blur', () => {
+        question.classList.remove('highlight');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

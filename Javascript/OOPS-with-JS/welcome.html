@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Page Greeting</title>
+  <style>
+    #welcomeMsg {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      display: block;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="greeting">Welcome!</h1>
+<div id="welcomeMsg">This is your welcome message.</div>
+
+<button id="changeGreeting">Change Greeting</button>
+<button id="toggleMsg">Toggle Welcome Message</button>
+
+<script>
+  const greetingEl = document.getElementById('greeting');
+  const welcomeMsgEl = document.getElementById('welcomeMsg');
+  const changeBtn = document.getElementById('changeGreeting');
+  const toggleBtn = document.getElementById('toggleMsg');
+
+  function setGreeting() {
+    const hour = new Date().getHours();
+    let text;
+    if (hour < 12) text = "Good Morning!";
+    else if (hour < 18) text = "Good Afternoon!";
+    else text = "Good Evening!";
+    greetingEl.textContent = text;
+  }
+
+
+  setGreeting();
+
+  
+  const quotes = [
+    "Believe you can and you're halfway there.",
+    "Stay positive, work hard, make it happen.",
+    "Every day is a second chance.",
+    "Dream it. Wish it. Do it."
+  ];
+  changeBtn.addEventListener('click', () => {
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    greetingEl.textContent = randomQuote;
+  });
+
+
+  toggleBtn.addEventListener('click', () => {
+    if (welcomeMsgEl.style.display === 'none') {
+      welcomeMsgEl.style.display = 'block';
+    } else {
+      welcomeMsgEl.style.display = 'none';
+    }
+  });
+
+
+  greetingEl.addEventListener('click', () => {
+    alert("You clicked the greeting!");
+  });
+</script>
+
+</body>
+</html>
