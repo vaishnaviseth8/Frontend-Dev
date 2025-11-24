@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Theme Switcher</title>
+<style>
+  body { font-family: Arial; padding: 20px; transition: background 0.3s, color 0.3s; }
+  button { padding: 8px 15px; margin: 5px; cursor: pointer; border-radius: 5px; border: 1px solid #888; }
+  /* Theme Styles */
+  body.light { background: #ffffff; color: #000; }
+  body.dark { background: #1e1e1e; color: #fff; }
+  body.blue { background: #007bff; color: #fff; }
+</style>
+</head>
+<body data-theme="light">
+
+<h2>Theme Switcher</h2>
+<button data-theme="light">Light</button>
+<button data-theme="dark">Dark</button>
+<button data-theme="blue">Blue</button>
+
+<script>
+const buttons = document.querySelectorAll("button");
+const body = document.body;
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const theme = btn.getAttribute("data-theme");
+    body.setAttribute("class", theme); // Apply theme class
+    body.setAttribute("data-theme", theme); // Save in custom attribute
+  });
+});
+</script>
+
+</body>
+</html>

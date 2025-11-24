@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Table Filter</title>
+<style>
+  body { font-family: Arial; padding: 20px; }
+  input { padding: 8px; margin-bottom: 15px; width: 250px; border-radius: 5px; border: 1px solid #888; }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  th, td { border: 1px solid #888; padding: 8px; text-align: left; }
+  tr.hidden { display: none; }
+  #noResults { text-align: center; color: red; display: none; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h2>Student Table</h2>
+<input type="text" id="searchInput" placeholder="Search students...">
+
+<table id="studentTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Branch</th>
+      <th>CGPA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>John Doe</td><td>CSE</td><td>9.1</td></tr>
+    <tr><td>Jane Smith</td><td>ECE</td><td>8.5</td></tr>
+    <tr><td>Michael Lee</td><td>ME</td><td>7.8</td></tr>
+    <tr><td>Anna Brown</td><td>CSE</td><td>9.0</td></tr>
+    <tr><td>David Wilson</td><td>EE</td><td>8.2</td></tr>
+  </tbody>
+</table>
+
+<div id="noResults">No results found</div>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const table = document.getElementById("studentTable").getElementsByTagName("tbody")[0];
+const noResults = document.getElementById("noResults");
+
+searchInput.addEventListener("input", () => {
+  const filter = searchInput.value.toLowerCase();
+  let visibleCount = 0;
+
+  Array.from(table.rows).forEach(row => {
+    const rowText = row.textContent.toLowerCase();
+    if(rowText.includes(filter)){
+      row.style.display = "";
+      visibleCount++;
+    } else {
+      row.style.display = "none";
+    }
+  });
+
+  noResults.style.display = visibleCount === 0 ? "block" : "none";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Custom Dropdown</title>
+<style>
+  body { font-family: Arial; padding: 20px; }
+  .dropdown {
+    position: relative; display: inline-block; width: 200px;
+  }
+  .dropdown-button {
+    width: 100%; padding: 10px; border: 1px solid #888; border-radius: 5px;
+    cursor: pointer; background: #fff;
+  }
+  .dropdown-options {
+    position: absolute; top: 100%; left: 0; width: 100%;
+    border: 1px solid #888; border-radius: 5px; background: #fff;
+    display: none; max-height: 150px; overflow-y: auto; z-index: 100;
+  }
+  .dropdown-options div {
+    padding: 8px 10px; cursor: pointer;
+  }
+  .dropdown-options div:hover {
+    background: #007bff; color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<h2>Custom Dropdown</h2>
+
+<div class="dropdown" id="dropdown">
+  <div class="dropdown-button" id="dropdownBtn">Select an option</div>
+  <div class="dropdown-options" id="dropdownOptions">
+    <div>Option 1</div>
+    <div>Option 2</div>
+    <div>Option 3</div>
+    <div>Option 4</div>
+  </div>
+</div>
+
+<script>
+const dropdown = document.getElementById("dropdown");
+const btn = document.getElementById("dropdownBtn");
+const options = document.getElementById("dropdownOptions");
+
+
+btn.addEventListener("click", (e) => {
+  options.style.display = options.style.display === "block" ? "none" : "block";
+});
+
+
+options.addEventListener("click", (e) => {
+  if(e.target.tagName === "DIV"){
+    btn.textContent = e.target.textContent;
+    options.style.display = "none";
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if(!dropdown.contains(e.target)){
+    options.style.display = "none";
+  }
+}, true);
+</script>
+
+</body>
+</html>

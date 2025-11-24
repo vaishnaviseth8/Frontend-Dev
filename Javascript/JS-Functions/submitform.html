@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form Submit Blocker</title>
+<style>
+  body { font-family: Arial; padding: 20px; }
+  form { max-width: 400px; margin: auto; }
+  input { width: 100%; padding: 8px; margin-bottom: 5px; border: 1px solid #888; border-radius: 5px; }
+  .error { color: red; font-size: 0.9em; display: none; margin-bottom: 10px; }
+  .success { color: green; font-weight: bold; margin-top: 10px; display: none; }
+</style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="myForm">
+  <label>Name</label>
+  <input type="text" id="name">
+  <div class="error" id="nameError">Name is required.</div>
+
+  <label>Email</label>
+  <input type="email" id="email">
+  <div class="error" id="emailError">Valid email required.</div>
+
+  <label>Password</label>
+  <input type="password" id="password">
+  <div class="error" id="passError">Password must be at least 6 characters.</div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<div class="success" id="successMsg">Form Submitted Successfully!</div>
+
+<script>
+const form = document.getElementById("myForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const passError = document.getElementById("passError");
+const successMsg = document.getElementById("successMsg");
+
+function validate() {
+  let valid = true;
+
+  if(nameInput.value.trim() === "") {
+    nameError.style.display = "block";
+    valid = false;
+  } else {
+    nameError.style.display = "none";
+  }
+
+  if(emailInput.value.trim() === "" || !emailInput.value.includes("@")) {
+    emailError.style.display = "block";
+    valid = false;
+  } else {
+    emailError.style.display = "none";
+  }
+
+  if(passwordInput.value.length < 6) {
+    passError.style.display = "block";
+    valid = false;
+  } else {
+    passError.style.display = "none";
+  }
+
+  return valid;
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if(validate()) {
+    successMsg.style.display = "block";
+    form.reset();
+  } else {
+    successMsg.style.display = "none";
+  }
+});
+
+
+[nameInput, emailInput, passwordInput].forEach(input => {
+  input.addEventListener("input", validate);
+});
+</script>
+
+</body>
+</html>
