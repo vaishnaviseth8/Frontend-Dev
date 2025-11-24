@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form Validation</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    form { max-width: 400px; margin: 20px auto; display: flex; flex-direction: column; }
+    input { margin: 10px 0; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    .error { border-color: red; }
+    .success { color: green; margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+<form id="registrationForm">
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button type="submit">Register</button>
+</form>
+
+<div id="message" class="success"></div>
+
+<script>
+  const existingEmails = ['test@example.com', 'user@domain.com'];
+
+  $('#registrationForm').on('submit', function(e){
+    e.preventDefault();
+    let valid = true;
+
+    const name = $('#name').val().trim();
+    const email = $('#email').val().trim();
+    const password = $('#password').val().trim();
+
+    $('#name, #email, #password').removeClass('error');
+
+    if(name === ''){
+      $('#name').addClass('error');
+      valid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRegex.test(email) || existingEmails.includes(email)){
+      $('#email').addClass('error');
+      valid = false;
+    }
+
+    if(password.length < 8){
+      $('#password').addClass('error');
+      valid = false;
+    }
+
+    if(valid){
+      $('#message').text('Registration successful!');
+      $('#registrationForm')[0].reset();
+    } else {
+      $('#message').text('');
+    }
+  });
+</script>
+
+</body>
+</html>

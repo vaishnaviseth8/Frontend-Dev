@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Special Offer Banner</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .banner {
+      width: 300px;
+      margin: 10px auto;
+      padding: 15px;
+      background-color: #ffeb3b;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+    }
+
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="banner" id="banner1">🎉 Special Offer 1</div>
+<div class="banner" id="banner2">🔥 Special Offer 2</div>
+<div class="banner" id="banner3">💎 Special Offer 3</div>
+
+<div>
+  <button id="hide">Hide</button>
+  <button id="show">Show</button>
+  <button id="slideToggle">Slide Up/Down</button>
+  <button id="fadeToggle">Fade In/Out</button>
+</div>
+
+<script>
+  $(document).ready(function() {
+    const banners = $('.banner');
+    let current = 0;
+
+    function rotateBanners() {
+      banners.fadeOut(500);
+      banners.eq(current).fadeIn(500);
+      current = (current + 1) % banners.length;
+    }
+
+    banners.show(); // show all banners initially
+    setInterval(rotateBanners, 5000);
+
+    $('#hide').click(() => banners.hide());
+    $('#show').click(() => banners.show());
+    $('#slideToggle').click(() => banners.slideToggle());
+    $('#fadeToggle').click(() => banners.fadeToggle());
+  });
+</script>
+
+</body>
+</html>

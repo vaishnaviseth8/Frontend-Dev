@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Subscription Panel</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .topic { margin: 5px 0; }
+    .success { color: green; margin-top: 10px; }
+    button { margin-left: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<h2>Event Subscription Panel</h2>
+
+<div id="topics">
+  <div class="topic" data-topic="News">News
+    <button class="subscribe">Subscribe</button>
+    <button class="unsubscribe">Unsubscribe</button>
+  </div>
+  <div class="topic" data-topic="Updates">Updates
+    <button class="subscribe">Subscribe</button>
+    <button class="unsubscribe">Unsubscribe</button>
+  </div>
+</div>
+
+<input type="text" id="newTopic" placeholder="New topic">
+<button id="addTopic">Add Topic</button>
+
+<div id="message"></div>
+
+<script>
+  function showMessage(msg) {
+    $('#message').text(msg).fadeIn(300).delay(1500).fadeOut(300);
+  }
+
+  function attachEvents(topicDiv) {
+    topicDiv.find('.subscribe').on('click', function() {
+      const name = topicDiv.data('topic');
+      showMessage(`Subscribed to ${name}`);
+    });
+
+    topicDiv.find('.unsubscribe').on('click', function() {
+      const name = topicDiv.data('topic');
+      showMessage(`Unsubscribed from ${name}`);
+    });
+  }
+
+  $('#topics .topic').each(function() {
+    attachEvents($(this));
+  });
+
+  $('#addTopic').on('click', function() {
+    const topicName = $('#newTopic').val().trim();
+    if (!topicName) return;
+    const newDiv = $(`
+      <div class="topic" data-topic="${topicName}">
+        ${topicName}
+        <button class="subscribe">Subscribe</button>
+        <button class="unsubscribe">Unsubscribe</button>
+        <button class="remove">Remove</button>
+      </div>
+    `);
+    $('#topics').append(newDiv);
+    attachEvents(newDiv);
+
+    newDiv.find('.remove').on('click', function() {
+      newDiv.find('.subscribe, .unsubscribe').off('click');
+      newDiv.remove();
+      showMessage(`Removed topic: ${topicName}`);
+    });
+
+    $('#newTopic').val('');
+    showMessage(`Added new topic: ${topicName}`);
+  });
+</script>
+
+</body>
+</html>

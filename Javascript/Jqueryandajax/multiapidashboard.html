@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Multi-API Dashboard</title>
+<style>
+  .card { border: 1px solid #ccc; padding: 20px; margin: 10px; display: inline-block; width: 150px; text-align: center; }
+  .skeleton { background: #eee; height: 30px; margin: 10px 0; }
+  .warning { color: red; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h2>Dashboard</h2>
+<div id="warning" class="warning"></div>
+<div class="card">
+  <h3>Total Users</h3>
+  <div id="users" class="skeleton"></div>
+</div>
+<div class="card">
+  <h3>Total Orders</h3>
+  <div id="orders" class="skeleton"></div>
+</div>
+<div class="card">
+  <h3>Total Products</h3>
+  <div id="products" class="skeleton"></div>
+</div>
+
+<script>
+const userEl = document.getElementById('users');
+const orderEl = document.getElementById('orders');
+const productEl = document.getElementById('products');
+const warningEl = document.getElementById('warning');
+
+Promise.all([
+  fetch('http://localhost:3000/users').then(res => res.json()),
+  fetch('http://localhost:3000/orders').then(res => res.json()),
+  fetch('http://localhost:3000/products').then(res => res.json())
+])
+.then(([users, orders, products]) => {
+  userEl.textContent = users.length;
+  orderEl.textContent = orders.length;
+  productEl.textContent = products.length;
+})
+.catch(() => {
+  warningEl.textContent = 'Some data could not be loaded.';
+  userEl.textContent = '-';
+  orderEl.textContent = '-';
+  productEl.textContent = '-';
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Courses</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #search { margin-bottom: 10px; padding: 5px; width: 300px; }
+    .course { margin: 5px 0; padding: 5px; border: 1px solid #ccc; }
+    .highlight { background-color: yellow; }
+    #count { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<input type="text" id="search" placeholder="Search courses...">
+<div id="count"></div>
+
+<div id="courses">
+  <div class="course">JavaScript Basics</div>
+  <div class="course">Advanced CSS</div>
+  <div class="course">HTML5 Essentials</div>
+  <div class="course">React Fundamentals</div>
+  <div class="course">Node.js Introduction</div>
+  <div class="course">Python for Data Science</div>
+</div>
+
+<script>
+  const courses = $('#courses .course');
+
+  function updateCount(matches) {
+    $('#count').text(`Matched Courses: ${matches}`);
+  }
+
+  $('#search').on('keyup', function() {
+    const query = $(this).val().toLowerCase();
+    let matched = 0;
+
+    courses.each(function() {
+      const text = $(this).text();
+      $(this).html(text); // reset previous highlights
+      if (text.toLowerCase().includes(query) && query !== "") {
+        const regex = new RegExp(`(${query})`, 'gi');
+        $(this).html(text.replace(regex, '<span class="highlight">$1</span>'));
+        $(this).show();
+        matched++;
+      } else if (query === "") {
+        $(this).show();
+        matched++;
+      } else {
+        $(this).hide();
+      }
+    });
+
+    updateCount(matched);
+  });
+
+
+  updateCount(courses.length);
+</script>
+
+</body>
+</html>

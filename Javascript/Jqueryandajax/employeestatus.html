@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Employee Status Dashboard</title>
+<style>
+  table { border-collapse: collapse; width: 50%; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+  .error { color: red; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h2>Employee Status Dashboard</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody id="employeeTable"></tbody>
+</table>
+<div id="error" class="error"></div>
+
+<script>
+const tableBody = document.getElementById('employeeTable');
+const errorDiv = document.getElementById('error');
+
+function fetchEmployees() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://localhost:3000/employees', true);
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && xhr.status === 200) {
+      const employees = JSON.parse(xhr.responseText);
+      renderTable(employees);
+    }
+  };
+  xhr.send();
+}
+
+function renderTable(employees) {
+  tableBody.innerHTML = '';
+  employees.forEach(emp => {
+    const tr = document.createElement('tr');
+    const statusChecked = emp.status === 'active' ? 'checked' : '';
+    tr.innerHTML = `
+      <td>${emp.name}</td>
+      <td>
+        <input type="checkbox" ${statusChecked} data-id="${emp.id}">
+      </td>
+    `;
+    tableBody.appendChild(tr);
+  });
+
+  tableBody.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+    toggle.addEventListener('change', function() {
+      const id = this.dataset.id;
+      const newStatus = this.checked ? 'active' : 'inactive';
+      const prevStatus = this.checked ? 'inactive' : 'active';
+      updateStatus(id, newStatus, this, prevStatus);
+    });
+  });
+}
+
+function updateStatus(id, status, checkbox, prevStatus) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('PATCH', `http://localhost:3000/employees/${id}`, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4) {
+      if(xhr.status >= 200 && xhr.status < 300) {
+        checkbox.checked = status === 'active';
+        errorDiv.textContent = '';
+      } else {
+        checkbox.checked = prevStatus === 'active';
+        errorDiv.textContent = `Failed to update status for employee ${id}`;
+      }
+    }
+  };
+  xhr.send(JSON.stringify({ status }));
+}
+
+fetchEmployees();
+</script>
+
+</body>
+</html>

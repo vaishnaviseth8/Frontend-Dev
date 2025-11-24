@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Blog Posts</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .post {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+      position: relative;
+    }
+    .tag {
+      font-size: 12px;
+      color: white;
+      background-color: #007BFF;
+      padding: 2px 5px;
+      margin-right: 3px;
+      border-radius: 3px;
+    }
+    .highlight { background-color: #ffffcc; }
+    button { margin: 5px; padding: 5px 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<h2>Blog Posts Admin</h2>
+
+<button id="addPost">Add New Post</button>
+<button id="prependPost">Prepend Featured Post</button>
+<button id="removeLast">Remove Last Post</button>
+<button id="highlightKeyword">Highlight Keyword: "jQuery"</button>
+
+<div id="posts">
+  <div class="post">Understanding HTML5</div>
+  <div class="post">CSS Grid Layout Tutorial</div>
+  <div class="post">JavaScript Basics</div>
+</div>
+
+<script>
+  let postCount = 1;
+
+  $('#addPost').on('click', function() {
+    const newPost = $(`<div class="post">New Post ${postCount++}</div>`);
+    $('#posts').append(newPost);
+
+    const tag = $('<span class="tag">New</span>');
+    newPost.append(tag);
+  });
+
+  $('#prependPost').on('click', function() {
+    const featured = $('<div class="post">🌟 Featured Post</div>');
+    $('#posts').prepend(featured);
+
+    const tag = $('<span class="tag">Featured</span>');
+    featured.prepend(tag);
+  });
+
+  $('#removeLast').on('click', function() {
+    $('#posts .post').last().remove();
+  });
+
+  $('#highlightKeyword').on('click', function() {
+    $('#posts .post').each(function() {
+      const text = $(this).text();
+      $(this).removeClass('highlight');
+      if (text.toLowerCase().includes('jquery')) {
+        $(this).addClass('highlight');
+      }
+    });
+  });
+
+ 
+  $('#posts .post').each(function(i) {
+    const beforeTag = $('<span class="tag">TagBefore</span>');
+    const afterTag = $('<span class="tag">TagAfter</span>');
+    $(this).before(beforeTag);
+    $(this).after(afterTag);
+  });
+</script>
+
+</body>
+</html>

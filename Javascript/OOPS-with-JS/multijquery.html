@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-JQuery Widgets</title>
+  <style>
+    #carousel { border: 1px solid #ccc; padding: 10px; width: 300px; margin-bottom: 10px; }
+    .slide { display: none; text-align: center; padding: 20px; border: 1px solid #ddd; }
+    .active { border-color: blue; background-color: #eef; }
+    .widget { display: inline-block; padding: 10px; border: 1px solid #ccc; margin: 5px; cursor: pointer; }
+    .tooltip { display: none; position: absolute; background: #333; color: #fff; padding: 3px 5px; border-radius: 3px; font-size: 12px; }
+    #modal { display:none; position: fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border:1px solid #333; padding:20px; z-index:1000; }
+    #modalOverlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999; }
+  </style>
+</head>
+<body>
+
+<h2>Carousel Slider</h2>
+<div id="carousel">
+  <div class="slide">Slide 1</div>
+  <div class="slide">Slide 2</div>
+  <div class="slide">Slide 3</div>
+</div>
+
+<h2>Widgets</h2>
+<div class="widget" data-tooltip="Widget 1 info">Widget 1</div>
+<div class="widget" data-tooltip="Widget 2 info">Widget 2</div>
+<div class="widget" data-tooltip="Widget 3 info">Widget 3</div>
+
+<h2>Notifications</h2>
+<button id="showModal">Show Notification</button>
+
+<div id="modalOverlay"></div>
+<div id="modal">
+  <p>This is a modal notification!</p>
+  <button id="closeModal">Close</button>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+  var jq1 = jQuery.noConflict(true);
+
+  jq1(document).ready(function(){
+    var slides = jq1('#carousel .slide');
+    var index = 0;
+
+    function showSlide(i){
+      slides.hide().eq(i).show().addClass('active').siblings().removeClass('active');
+    }
+
+    showSlide(index);
+
+    setInterval(function(){
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 3000);
+
+   
+    jq1('.widget').click(function(){
+      jq1(this).addClass('active').siblings().removeClass('active');
+    });
+  });
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  var jq3 = jQuery.noConflict(true);
+
+  jq3(document).ready(function(){
+    // Modal popup
+    jq3('#showModal').on('click', function(){
+      jq3('#modalOverlay, #modal').fadeIn();
+    });
+    jq3('#closeModal, #modalOverlay').on('click', function(){
+      jq3('#modalOverlay, #modal').fadeOut();
+    });
+
+    jq3('.widget').hover(function(e){
+      const tooltipText = jq3(this).data('tooltip');
+      const tooltip = jq3('<div class="tooltip">'+tooltipText+'</div>');
+      jq3('body').append(tooltip);
+      tooltip.css({top: e.pageY + 10, left: e.pageX + 10}).fadeIn();
+      jq3(this).data('tooltipElem', tooltip);
+    }, function(){
+      jq3(this).data('tooltipElem').remove();
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task Manager</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+  body { font-family: Arial; margin: 20px; }
+  ul { list-style: none; padding: 0; }
+  li { border: 1px solid #ccc; margin: 5px 0; padding: 10px; display: flex; align-items: center; justify-content: space-between; }
+  select { margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<h2>Task Manager</h2>
+<select id="filter">
+  <option value="">All</option>
+  <option value="priority=low">Low Priority</option>
+  <option value="priority=medium">Medium Priority</option>
+  <option value="priority=high">High Priority</option>
+  <option value="completed=true">Completed</option>
+</select>
+
+<ul id="taskList"></ul>
+
+<script>
+function loadTasks(filter='') {
+  let url = 'http://localhost:3000/tasks';
+  if(filter) url += '?' + filter;
+
+  $.ajax({
+    url,
+    method: 'GET',
+    dataType: 'json',
+    success: function(tasks) {
+      $('#taskList').empty();
+      if(!tasks.length) {
+        $('#taskList').append('<li>No tasks found</li>');
+        return;
+      }
+      tasks.forEach(task => {
+        const li = $(`
+          <li>
+            <span>${task.title} (${task.priority})</span>
+            <input type="checkbox" ${task.completed ? 'checked' : ''} data-id="${task.id}">
+          </li>
+        `);
+        li.find('input[type="checkbox"]').on('change', function() {
+          const completed = this.checked;
+          $.ajax({
+            url: `http://localhost:3000/tasks/${task.id}`,
+            method: 'PATCH',
+            contentType: 'application/json',
+            data: JSON.stringify({ completed }),
+            error: function() {
+              alert('Failed to update task.');
+              $(this).prop('checked', !completed);
+            }.bind(this)
+          });
+        });
+        $('#taskList').append(li);
+      });
+    },
+    error: function() {
+      $('#taskList').html('<li>Error loading tasks</li>');
+    }
+  });
+}
+
+$('#filter').on('change', function() {
+  loadTasks(this.value);
+});
+
+loadTasks();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Team Members Directory</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .department {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .department > .dept-name {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .employee {
+      padding: 5px 10px;
+      margin: 3px 0;
+      border: 1px solid #eee;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .employee .contact {
+      display: none;
+      font-size: 12px;
+      margin-left: 10px;
+      color: #555;
+    }
+
+    .highlight { background-color: #ffffcc; }
+    .sibling-highlight { background-color: #ffe0e0; }
+  </style>
+</head>
+<body>
+
+<div class="department">
+  <div class="dept-name">Engineering</div>
+  <div class="employee" data-manager="Alice">Bob <span class="contact">bob@company.com</span></div>
+  <div class="employee" data-manager="Alice">Charlie <span class="contact">charlie@company.com</span></div>
+  <div class="employee" data-manager="Alice">Diana <span class="contact">diana@company.com</span></div>
+</div>
+
+<div class="department">
+  <div class="dept-name">Marketing</div>
+  <div class="employee" data-manager="Eve">Frank <span class="contact">frank@company.com</span></div>
+  <div class="employee" data-manager="Eve">Grace <span class="contact">grace@company.com</span></div>
+</div>
+
+<button id="randomEmployee">Highlight Siblings of Random Employee</button>
+<button id="toggleTeams">Collapse/Expand Teams</button>
+
+<script>
+  
+  $('.employee[data-manager]').on('click', function() {
+    const manager = $(this).data('manager');
+    $('.employee').removeClass('highlight');
+    $(`.employee[data-manager="${manager}"]`).addClass('highlight');
+  });
+
+
+  $('.employee').hover(
+    function() { $(this).children('.contact').show(); },
+    function() { $(this).children('.contact').hide(); }
+  );
+
+ 
+  $('.dept-name').on('click', function() {
+    const dept = $(this).parent();
+    dept.children('.employee').toggleClass('highlight');
+  });
+
+  $('#randomEmployee').on('click', function() {
+    $('.employee').removeClass('sibling-highlight');
+    const employees = $('.employee');
+    const random = employees.eq(Math.floor(Math.random() * employees.length));
+    random.siblings('.employee').addClass('sibling-highlight');
+  });
+
+
+  let collapsed = false;
+  $('#toggleTeams').on('click', function() {
+    $('.department').each(function() {
+      $(this).find('.employee').toggle(!collapsed);
+    });
+    collapsed = !collapsed;
+  });
+</script>
+
+</body>
+</html>
