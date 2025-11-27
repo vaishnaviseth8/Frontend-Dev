@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Result Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Student Result Management System</h1>
+
+    <div class="form-container">
+        <input id="name" placeholder="Student Name">
+        <input id="section" placeholder="Section">
+        <input id="marks" placeholder="Marks" type="number">
+        <select id="result">
+            <option value="Pass">Pass</option>
+            <option value="Fail">Fail</option>
+        </select>
+
+        <button onclick="addStudent()">Add Student</button>
+    </div>
+
+    <h2>Student Records</h2>
+    <table id="studentsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Section</th>
+                <th>Marks</th>
+                <th>Result</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+<script src="app.js"></script>
+</body>
+</html>

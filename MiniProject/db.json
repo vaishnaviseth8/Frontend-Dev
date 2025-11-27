@@ -1,0 +1,12 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Vaishnavi Seth",
+      "section": "A",
+      "result": "Pass",
+      "marks": 85
+    }
+  ]
+}
+
